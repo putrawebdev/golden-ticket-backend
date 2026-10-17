@@ -1,0 +1,18 @@
+[package]
+name = "golden-ticket-backend"
+version = "0.1.0"
+description = "Laravel Backend API for Golden Ticket Gen Z Indonesia"
+
+[dependencies]
+
+[[app]]
+name = "golden-ticket-backend"
+app_id = "golden-ticket-backend"
+
+[app.build]
+dockerfile = "Dockerfile"
+
+[app.env]
+APP_ENV = "production"
+APP_DEBUG = "false"
+DB_CONNECTION = "pgsql"
