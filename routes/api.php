@@ -37,3 +37,12 @@ Route::middleware('auth:sanctum')->group(function () {
     // event-info
     Route::put('/event-info', [EventSettingController::class, 'update']);
 });
+
+Route::options('{any}', function (Illuminate\Http\Request $request) {
+    $origin = $request->header('Origin') ?: '*';
+    return response('', 200)
+        ->header('Access-Control-Allow-Origin', $origin)
+        ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
+        ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept, Origin')
+        ->header('Access-Control-Allow-Credentials', 'true');
+})->where('any', '.*');
