@@ -12,7 +12,9 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'], // Mengizinkan semua domain (termasuk Vercel)
+    'allowed_origins' => [
+        'https://golden-ticket-frontend-lqmxu14dm-putrawebdevs-projects.vercel.app/'
+        ], // Mengizinkan semua domain (termasuk Vercel)
 
     'allowed_origins_patterns' => [],
 
