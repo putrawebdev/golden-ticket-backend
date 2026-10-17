@@ -15,13 +15,20 @@ define('LARAVEL_START', microtime(true));
 | instead of starting the framework, which could cause an exception.
 |
 */
-// Respon langsung request OPTIONS jika request langsung ke /public
+// Tangani request PREFLIGHT (OPTIONS) secara sempurna untuk Wasmer Proxy
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    header('Access-Control-Allow-Origin: *');
+    $origin = $_SERVER['HTTP_ORIGIN'] ?? '*';
+    header("Access-Control-Allow-Origin: {$origin}");
     header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, Accept, Origin');
+    header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, Accept, Origin, Access-Control-Request-Method, Access-Control-Request-Headers');
+    header('Access-Control-Allow-Credentials: true');
+    header('Access-Control-Max-Age: 86400');
+    
+    // Wajib untuk Wasmer Proxy agar tidak mengembalikan 400 Bad Request
+    header('Content-Type: text/plain; charset=UTF-8');
+    header('Content-Length: 0');
     http_response_code(200);
-    exit();
+    exit(0);
 }
 
 /*
