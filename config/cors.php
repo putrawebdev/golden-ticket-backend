@@ -13,7 +13,7 @@ return [
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
-        'https://golden-ticket-frontend-eight.vercel.app/'
+        'https://golden-ticket-frontend-eight.vercel.app'
         ], // Mengizinkan semua domain (termasuk Vercel)
 
     'allowed_origins_patterns' => [],
