@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/clear-cache', function () {
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    return 'Cache Laravel berhasil dibersihkan via Wasmer!';
+});
 
 /*
 |--------------------------------------------------------------------------
