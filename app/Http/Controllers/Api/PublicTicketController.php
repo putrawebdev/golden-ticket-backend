@@ -39,6 +39,7 @@ class PublicTicketController extends Controller
                 'scan_count' => $invitation->scan_count,
                 'max_scans' => $invitation->max_scans,
                 'remaining_scans' => max(0, $invitation->max_scans - $invitation->scan_count),
+                'event'           => $eventInfo,
                 'event_info' => $eventInfo
             ]
         ]);

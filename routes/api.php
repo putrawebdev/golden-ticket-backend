@@ -14,7 +14,7 @@ use App\Http\Controllers\Api\EventSettingController;
 |--------------------------------------------------------------------------
 */
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/public/tickets/{ticket_code}', [PublicTicketController::class, 'show']);
+Route::get('/public/ticket/{ticket_code}', [PublicTicketController::class, 'show']);
 Route::get('/event-info', [EventSettingController::class, 'show']);
 /*
 |--------------------------------------------------------------------------
