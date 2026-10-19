@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Invitation;
 use Illuminate\Support\Facades\Cache;
@@ -39,9 +39,28 @@ class PublicTicketController extends Controller
                 'scan_count' => $invitation->scan_count,
                 'max_scans' => $invitation->max_scans,
                 'remaining_scans' => max(0, $invitation->max_scans - $invitation->scan_count),
+                'rsvp_status' => $invitation->rsvp_status,
                 'event'           => $eventInfo,
                 'event_info' => $eventInfo
             ]
+        ]);
+    }
+
+    // SIMPAN KONFIRMASI KEHADIRAN (RSVP)
+    public function rsvp(Request $request, $ticket_code)
+    {
+        $request->validate([
+            'status' => 'required|in:attending,declined'
+        ]);
+
+        $invitation = Invitation::where('ticket_code', $ticket_code)->firstOrFail();
+        $invitation->rsvp_status = $request->status;
+        $invitation->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Konfirmasi kehadiran berhasil diperbarui.',
+            'rsvp_status' => $invitation->rsvp_status
         ]);
     }
 }

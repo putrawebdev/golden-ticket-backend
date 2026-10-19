@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\EventSettingController;
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/public/ticket/{ticket_code}', [PublicTicketController::class, 'show']);
 Route::get('/event-info', [EventSettingController::class, 'show']);
+Route::post('/public/ticket/{ticket_code}/rsvp', [PublicTicketController::class, 'rsvp']);
 /*
 |--------------------------------------------------------------------------
 | Protected Admin & Gatekeeper Routes (Laravel Sanctum)
