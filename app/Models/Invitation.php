@@ -21,7 +21,8 @@ class Invitation extends Model
         'event_date', // <--- Tambahkan ini
         'scan_count',
         'max_scans',
-        'status'
+        'status',
+        'rsvp_status',
     ];
 
     protected $casts = [
